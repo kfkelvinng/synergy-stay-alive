@@ -5,9 +5,10 @@ LOG="${DIR}/$(basename ${BASH_SOURCE[0]}).log"
 
 run() {
 
-  if arp -a | grep '(192.168.1.1)' | md5sum | grep cbf645c49fb631ced617c459a50169f5; then
+  if /usr/sbin/arp -a | grep '(192.168.1.1)' | md5sum | egrep 'cbf645c49fb631ced617c459a50169f5|a11d00ddd31413fd44a8149bb2e58753'; then
     log "At Home..."
   else
+    log "Not at Home..."
     exit 0
   fi
 
